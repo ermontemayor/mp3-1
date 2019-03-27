@@ -1,0 +1,5 @@
+Questions:
+
+1.) The code smells for this question appears to be duplicate method. The refactoring created a new method which allowed the long winded code to be condensed into a single line. This refactoring method is called the extract method.
+
+2.)
