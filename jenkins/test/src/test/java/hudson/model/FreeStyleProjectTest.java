@@ -39,9 +39,11 @@ import org.junit.Test;
 import org.jvnet.hudson.test.Issue;
 import org.jvnet.hudson.test.JenkinsRule;
 import org.jvnet.hudson.test.JenkinsRule.WebClient;
+import org.xml.sax.SAXException;
 
 import java.util.List;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * @author Kohsuke Kawaguchi
@@ -59,7 +61,11 @@ public class FreeStyleProjectTest {
     @Test
     public void configSubmission() throws Exception {
         FreeStyleProject project = j.createFreeStyleProject();
-        Shell shell = new Shell("echo hello");
+        q6change(project);
+    }
+
+	private void q6change(FreeStyleProject project) throws IOException, SAXException, Exception {
+		Shell shell = new Shell("echo hello");
         project.getBuildersList().add(shell);
 
         // emulate the user behavior
@@ -74,7 +80,7 @@ public class FreeStyleProjectTest {
         assertEquals(Shell.class,builders.get(0).getClass());
         assertEquals("echo hello",((Shell)builders.get(0)).getCommand().trim());
         assertTrue(builders.get(0)!=shell);
-    }
+	}
 
     /**
      * Custom workspace and concurrent build had a bad interaction.
@@ -112,18 +118,7 @@ public class FreeStyleProjectTest {
         // Make sure it can be created without exceptions:
         FreeStyleProject project = (FreeStyleProject) j.jenkins.createProjectFromXML("stuff", new ByteArrayInputStream("<project/>".getBytes()));
         System.out.println(project.getConfigFile().asString());
-        // and round-tripped:
-        Shell shell = new Shell("echo hello");
-        project.getBuildersList().add(shell);
-        WebClient webClient = j.createWebClient();
-        HtmlPage page = webClient.getPage(project,"configure");
-        HtmlForm form = page.getFormByName("config");
-        j.submit(form);
-        List<Builder> builders = project.getBuilders();
-        assertEquals(1,builders.size());
-        assertEquals(Shell.class,builders.get(0).getClass());
-        assertEquals("echo hello",((Shell)builders.get(0)).getCommand().trim());
-        assertTrue(builders.get(0)!=shell);
+        q6change(project);
         System.out.println(project.getConfigFile().asString());
     }
 }
