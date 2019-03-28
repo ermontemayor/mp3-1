@@ -46,7 +46,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * @author Kohsuke Kawaguchi
+ * @author Kohsuke Kawaguchi...
  */
 public class FreeStyleProjectTest {
 
