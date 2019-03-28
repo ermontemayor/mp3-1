@@ -3,3 +3,7 @@ Questions:
 1.) The code smells for this question appears to be duplicate method. The refactoring created a new method which allowed the long winded code to be condensed into a single line. This refactoring method is called the extract method.
 
 2.)
+
+3.)
+
+4.) To eliminate the code smells duplicate code, we just put the code into a for loop and iterated over the loop four times. We also had to change the break to break out of the outer loop rather than breaking from the inner loop. 
