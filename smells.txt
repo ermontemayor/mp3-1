@@ -4,7 +4,7 @@ Questions:
 
 2.) No question
 
-3.) 
+3.) It does not appear to belong in the Nodes class. It is having to call the Jenkins package and so it would be easier to just move it to Jenkins. This example of code smells is a feature envy. This can be fixed by using the refactoring method, move and moving it to the correct area.
 
 4.) To eliminate the code smells duplicate code, we just put the code into a for loop and iterated over the loop four times. We also had to change the break to break out of the outer loop rather than breaking from the inner loop. 
 
