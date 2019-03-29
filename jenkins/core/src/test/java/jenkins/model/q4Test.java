@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-public class q4Tests {
+public class q4Test {
 
 	@Test
 	public void testDollarSign() {
